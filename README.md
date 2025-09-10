@@ -23,10 +23,29 @@ This pipeline is derived from **ArxOS’s MPC framework** — a modular AI stack
 |---------------|----------------------------|
 | Input         | Flask API (`claim_intake.py`) |
 | Queueing      | Redis + Celery             |
-| Processing    | OpenAI GPT-4 (`llm_model.py`) |
+| Processing    | OpenAI GPT-5 (`llm_model.py`) |
 | DevOps        | Docker, GitHub Actions, n8n |
 | CI/CD         | `.github/workflows/ci.yml` |
 | Deployment    | `docker-compose.yml`       |
+
+![CI](https://github.com/eversmartcity/arx-ml-finance-intake/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.11-blue.svg)
+
+## 🧠 MPC Architecture
+
+This pipeline follows a modular architecture derived from the ArxMPCs (Modular Processing Components) framework, enabling orchestration of AI agents across isolated tasks:
+
+Module Roles
+
+- ClaimIntake: Handles API intake and schema validation
+- QueueProc: Redis + Celery based job distribution
+- LLMProc: GPT-4-powered fraud scoring + anomaly detection
+- CI/CD: GitHub Actions-based CI/CD for compliance checks
+- OpsProc: Dockerized service orchestration and deployment
+### 🧩 Modular Processing Components Overview
+📥 ClaimIntake → 📤 QueueProc → 🧠 LLMProc → ✅ CI/CD → 🚀 OpsProc
+
+Each module is designed to be independently testable, replaceable, and deployable, with clear API boundaries and message-passing via Redis queues.
 
 📊 **Architecture Diagram**
 
