@@ -28,6 +28,10 @@ This pipeline is derived from **ArxOS’s MPC framework** — a modular AI stack
 | CI/CD         | `.github/workflows/ci.yml` |
 | Deployment    | `docker-compose.yml`       |
 
+📊 **Architecture Diagram**
+
+See `docs/architecture.png` for a visual overview of the pipeline — from claim intake to ML triage and CI/CD handling.
+
 ---
 ## 🗂️ File Structure
 
@@ -39,3 +43,25 @@ This pipeline is derived from **ArxOS’s MPC framework** — a modular AI stack
 📄 llm_model.py – GPT-4 prompt logic and fraud detection  
 📄 requirements.txt – Python dependencies  
 📄 README.md – Project documentation
+
+---
+
+## 🧪 How to Run Locally
+
+To run this AI/ML finance claim pipeline locally:
+
+1. **Clone the repo**
+
+```bash
+git clone https://github.com/evermartcity/arx-ml-finance-intake.git
+cd arx-ml-finance-intake
+
+python3 -m venv venv
+source venv/bin/activate     # On Windows use `venv\Scripts\activate`
+pip install -r requirements.txt
+
+docker-compose up --build
+
+curl -X POST http://localhost:5000/claim \
+  -H "Content-Type: application/json" \
+  -d '{"patient_id": "123", "procedure": "MRI", "cost": 950}'
