@@ -1,1 +1,6 @@
+celery
+redis
+openai
+flask
+python-dotenv
 
